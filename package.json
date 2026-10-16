@@ -1,0 +1,23 @@
+{
+  "name": "sqa-automation-assessment",
+  "version": "1.0.0",
+  "description": "UI automation (Playwright) for saucedemo.com and API automation (Postman/Newman) for reqres.in",
+  "scripts": {
+    "test:q1": "playwright test tests/ui/q1-locked-out-user.spec.js",
+    "test:q2": "playwright test tests/ui/q2-standard-user-checkout.spec.js",
+    "test:q3": "playwright test tests/ui/q3-performance-glitch-user.spec.js",
+    "test:ui": "playwright test --workers=1",
+    "test:ui:headed": "playwright test --workers=1 --headed",
+    "test:api": "newman run api/collection/Reqres_API_Assessment.postman_collection.json -e api/environment/Reqres.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export reports/api/api-report.html",
+    "test:all": "npm run test:ui && npm run test:api",
+    "report:html": "playwright show-report reports/playwright-html",
+    "report:allure": "allure generate allure-results --clean -o reports/allure-report && allure open reports/allure-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^3.0.0",
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}
